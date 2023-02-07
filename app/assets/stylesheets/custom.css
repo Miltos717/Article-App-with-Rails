@@ -1,0 +1,34 @@
+.navbar{
+    background-color: black !important;
+}
+
+.nav-link{
+    color: white !important;
+}
+
+
+#logo{
+    float: left;
+    font-size: 1.7em;
+    color: #F7F7F7;
+    text-transform: uppercase;
+    letter-spacing: -1px;
+    font-weight: bold;
+}
+
+#home-container{
+    margin-top: 25px;
+}
+
+.bg-color {
+    background-color: lightgray;
+}
+
+
+
+
+
+
+
+
+
