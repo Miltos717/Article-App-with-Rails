@@ -1,10 +1,10 @@
-<% if @article.errors.any? %>
+<% if obj.errors.any? %>
   <div class="alert alert-danger alert-dismissible fade show" role="alert">
     <h4 class="alert-heading">Error</h4>
     <div style="color: red">
-      <h2><%= @article.errors.count %> prohibited this article from being saved:</h2>
+      <h2><%= obj.errors.count %> prohibited this article from being saved:</h2>
       <ul>
-        <% @article.errors.each do |error| %>
+        <% obj.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>

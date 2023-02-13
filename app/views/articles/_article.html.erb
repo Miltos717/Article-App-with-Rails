@@ -1,12 +1,26 @@
-<div id="<%= dom_id article %>">
-  <p>
-    <strong>Title:</strong>
-    <%= article.title %>
-  </p>
+<div id="page-content">
 
-  <p>
-    <strong>Description:</strong>
-    <%= article.description %>
-  </p>
+  <% @articles.each do |article| %>
+    <div class="container">
+      <div class="card text-center img-fluid rounded-4 shadow-2-strong">
+        <div class="card-header"> </div>
+        <div class="card-body">
+          <% if article.user %>
+             <%=  link_to article.user.username, users_path(article.user) %>
+            <% end %>
+          <h5 class="card-title"><%= link_to article.title,article_path(article),class:"text-success" %></h5>
+          <p class="card-text"><%= truncate(article.description,length: 100) %></p>
+          <%= link_to "View", article_path(article),class:"btn btn-outline-success" %>
+          <%= link_to "Edit", edit_article_path(article),class:"btn btn-outline-info" %>
+          <%= button_to "Delete", article_path(article),method: :delete, data: { confirm: "Are you sure?" },class:"btn btn-outline-danger" %>
+        </div>
+        <div class="card-footer text-muted">
+          <small>Created <%= time_ago_in_words(article.created_at) %>ago,
+            edited <%= time_ago_in_words(article.updated_at) %> ago </small>
+        </div>
+      </div>
+    </div>
 
+  <% end %>
 </div>
+
