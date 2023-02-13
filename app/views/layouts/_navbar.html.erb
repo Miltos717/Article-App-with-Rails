@@ -12,7 +12,9 @@
           </a>
           <ul class="dropdown-menu">
             <%= link_to "View Articles",articles_path,class:"dropdown-item" %>
-            <%= link_to "Create you article",new_article_path,class:"dropdown-item" %>
+            <% if logged_in? %>
+              <%= link_to "Create you article",new_article_path,class:"dropdown-item" %>
+            <% end %>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="#">Something else here</a></li>
           </ul>
@@ -23,9 +25,19 @@
 
         <% if logged_in? %>
 
-              <li class="nav-item">
-                <%= link_to current_users.username,user_path(current_users), class:"nav-link" %>
-              </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <%=  '(Admin)'if current_users.admin? %> Profile [<%= current_users.username %>]
+            </a>
+
+            <ul class="dropdown-menu">
+              <%= link_to "View your profile",user_path(current_users),class:"dropdown-item" %>
+              <%= link_to "Edit your profile",edit_user_path(current_users),class:"dropdown-item" %>
+              <%= button_to "Delete profile",user_path(current_users),class:"dropdown-item text-danger",method: :delete,data: {confirm: "Are you sure?" } %>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </li>
 
               <li class="nav-item">
                 <%= link_to "Logout",logout_path, class:"nav-link", method: :delete %>
@@ -38,7 +50,7 @@
               </li>
 
               <li class="nav-item">
-                <%= link_to "Sign up",signup_path, class:"nav-link", method: :delete %>
+                <%= link_to "Sign up",signup_path, class:"nav-link" %>
               </li>
 
         <% end %>

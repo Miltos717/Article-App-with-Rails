@@ -10,8 +10,15 @@
           <h5 class="card-title"><%= link_to "image",user %></h5>
           <p class="card-text"><%= pluralize(user.articles.count,"article") %></p>
           <%= link_to "View profile", user,class:"btn btn-outline-success" %>
-          <%= link_to "Edit profile", edit_user_path(user),class:"btn btn-outline-info" %>
-        </div>
+          <% if logged_in? %>
+              <% if user == current_users %>
+                  <%= link_to "Edit profile", edit_user_path(user),class:"btn btn-outline-info" %>
+               <% end %>
+                <% if current_users.admin? %>
+                     <%= button_to "Delete user", user_path(user),class:"btn btn-outline-danger",method: :delete, data: { confirm: "Are you sure for this user??" } %>
+                <% end %>
+            <% end %>
+            </div>
         <div class="card-footer text-muted">
           <small>Joined<%= time_ago_in_words(user.created_at) %>ago </small>
         </div>

@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[ show edit update destroy ]
-
+  before_action :set_user, only: [ :show, :edit, :update, :destroy ]
+  before_action :require_user,only: [:edit,:update]
+  before_action :require_same_user,only: [:edit,:update,:destroy]
   # GET /users or /users.json
   def index
     @users = User.all
@@ -53,9 +54,9 @@ class UsersController < ApplicationController
   # DELETE /users/1 or /users/1.json
   def destroy
     @user.destroy
-
+    session[:user_id] = nil if @user == current_users
     respond_to do |format|
-      format.html { redirect_to users_url, notice: "User was successfully destroyed." }
+      format.html { redirect_to users_url, notice: "User was successfully destroyed as long as the articles." }
       format.json { head :no_content }
     end
   end
@@ -70,4 +71,14 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:username,:email,:password)
     end
+
+  def require_same_user
+
+    if current_users != @user && !current_users.admin?
+      flash[:alert] = "You can only edit your own article"
+      redirect_to @user
+    end
+
+  end
+
 end
