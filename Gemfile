@@ -28,7 +28,7 @@ gem "jbuilder"
 gem 'jquery-turbolinks'
 gem 'will_paginate', '3.2.1'
 gem 'will_paginate-bootstrap4'
-
+gem 'rexml', require: false
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"

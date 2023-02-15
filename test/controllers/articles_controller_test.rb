@@ -39,7 +39,7 @@ class ArticlesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should destroy article" do
-    assert_difference("Article.count", -1) do
+      assert_difference("Article.count", -1) do
       delete article_url(@article)
     end
 

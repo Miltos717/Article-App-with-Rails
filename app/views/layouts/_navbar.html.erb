@@ -6,6 +6,7 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Articles
@@ -19,6 +20,20 @@
             <li><a class="dropdown-item" href="#">Something else here</a></li>
           </ul>
         </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+             Categories
+          </a>
+          <ul class="dropdown-menu">
+            <%= link_to "View Categories",categories_path,class:"dropdown-item" %>
+            <% if logged_in? && current_users.admin? %>
+              <%= link_to "Create category",new_category_path,class:"dropdown-item" %>
+            <% end %>
+
+          </ul>
+        </li>
+
         <li class="nav-item">
           <%= link_to "App users",users_path, class:"nav-link" %>
         </li>

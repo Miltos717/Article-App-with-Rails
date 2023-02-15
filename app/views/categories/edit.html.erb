@@ -170,44 +170,39 @@
                 bottom: 100%;
             }
         }
-
     </style>
   </head>
 
   <div class="login-box">
+    <h1 class="text-center mt-4">Edit category</h1>
+    <%= form_with(model: @category) do |form| %>
 
-    <h2>login</h2>
-
-    <%= form_with(scope: :session,url: login_path) do |form| %>
       <div class="container">
         <form id="info">
+          <%= render "shared/errors", obj:@category %>
           <!-- Name input -->
-
           <div class="form-outline mb-4">
-            <label class="form-label" for="form4Example3">Email</label>
-            <%= form.email_field :email, placeholder: "Email", class: "form-control" %>
-          </div>
+            <label class="form-label" for="form4Example1"></label>
+            <%= form.text_field :name, placeholder: "New name for category", class: "form-control" %>
 
-          <div class="form-outline mb-4">
-            <label class="form-label" for="form4Example3">Password</label>
-            <%= form.password_field :password, placeholder: "password", class: "form-control" %>
           </div>
-
 
           <div class="form group row justify-content-center">
-            <p><%= form.submit "Login" , class:"btn btn-success btn-block mb-4", params:{article:{active: true}} %> </p>
+            <p><%= form.button :submit, class:"btn btn-success btn-block mb-4" %> </p>
           </div>
 
         </form>
         <div class="mb-3">
-          <%= link_to "Cancel and return to articles listing ", articles_path, class:"text-info"%>
+          <%= link_to "Cancel and return to category listing ", categories_path(@category), class:"text-info"%>
         </div>
+
       </div>
 
     <% end %>
 
 
-  </div>
 
+
+  </div>
 
 </div>
