@@ -167,45 +167,56 @@
               bottom: 100%;
           }
       }
+
   </style>
 </head>
+
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="css/mystyle.css">
+</head>
+<body>
+
 
 <div class="login-box">
   <h2>Sign up</h2>
 
   <%= form_with(model: @user) do |form| %>
-
-    <div class="container">
-      <form id="info">
-        <%= render "shared/errors", obj:@user %>
-        <!-- Name input -->
-        <div class="form-outline mb-4">
-          <label class="form-label" for="form4Example1">Username</label>
-          <%= form.text_field :username, placeholder: "Username", class: "form-control" %>
-        </div>
-
-        <div class="form-outline mb-4">
-          <label class="form-label" for="form4Example3">Email</label>
-          <%= form.email_field :email, placeholder: "Email", class: "form-control" %>
-        </div>
-
-        <div class="form-outline mb-4">
-          <label class="form-label" for="form4Example3">password</label>
-          <%= form.password_field :password, placeholder: "password", class: "form-control" %>
-        </div>
-
-
-        <div class="form group row justify-content-center">
-          <p><%= form.button :submit, class:"btn btn-success btn-block mb-4", params:{user:{active: true}} %> </p>
-        </div>
-
-      </form>
-      <div class="mb-3">
-        <%= link_to "Cancel and return to articles listing ", articles_path, class:"text-info"%>
-      </div>
+    <%= render "shared/errors", obj:@user %>
+    <div class="user-box">
+      <%= form.text_field :username, placeholder: "Username", class: "form-control" %>
+      <label>Username</label>
     </div>
+
+    <div class="user-box">
+      <%= form.email_field :email, placeholder: "email", class: "form-control" %>
+      <label>Email</label>
+    </div>
+
+    <div class="user-box">
+      <%= form.password_field :password, placeholder: "password", class: "form-control" %>
+      <label>Password</label>
+    </div>
+
+    <a href="#">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+
+
+      <%= form.submit "Create User", class:"btn btn secondary ", params:{user:{active: true}} %>
+    </a>
 
   <% end %>
 
-
 </div>
+
+
+
+
+</body>
+
+
+</html>
